@@ -1,4 +1,4 @@
-FROM sunteya/baseimage:20150403
+FROM sunteya/baseimage:20150716
 MAINTAINER sunteya <sunteya@gmail.com>
 
 RUN apt-get update \
