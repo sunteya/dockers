@@ -1,17 +1,12 @@
-FROM sunteya/baseimage:20150716
+FROM alpine:3.3
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt-get update \
- && apt-get install -y polipo \
- && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*  # 20150716
+COPY build.sh /
+RUN sh -x build.sh # 20160403
 
+COPY config /app/
+COPY entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 
-RUN mv /etc/polipo/config /etc/polipo/config.dist
-ADD polipo-config /etc/polipo/config
-
-RUN mkdir -p /etc/service/polipo
-ADD polipo-run.sh /etc/service/polipo/run
-RUN chmod +x /etc/service/polipo/run
-
+ENTRYPOINT [ "/entrypoint.sh" ]
 EXPOSE 8123
-VOLUME /var/cache/polipo

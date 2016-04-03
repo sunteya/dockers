@@ -9,28 +9,28 @@ polipo is a caching web proxy
 ## Usage
 
 * Run polipo server
-   
+
    ````bash
    docker run -p 8123:8123 sunteya/polipo
    ````
 
 * Run polipo server with argments
-   
+
    ````bash
-   docker run -p 8123:8123  -e POLIPO_ARGS="socksParentProxy=\$SSLOCAL_PORT_1080_TCP_ADDR:1080" sunteya/polipo
+   docker run -p 8123:8123 sunteya/polipo --help
    ````
 
 * Run polipo server with config file
-   
+
    ````bash
-   docker run -p 8388:8388 -v "polipo-config:/etc/polipo/config" sunteya/polipo
+   docker run -p 8388:8388 -v $PWD/polipo-config:/app/config sunteya/polipo
    ````
 
 * Example for run with [shadowsocks](https://github.com/sunteya/dockers/tree/master/shadowsocks) and [docker-compose](https://github.com/docker/compose)
-   
+
    ```
    # docker-compose.yml
-   
+
    sslocal:
      image: sunteya/shadowsocks:2.6.8
      restart: always
@@ -38,14 +38,14 @@ polipo is a caching web proxy
        - shadowsocks-sslocal.json:/etc/shadowsocks.json
      environment:
        - SS_APP=sslocal
+     expose: [ 1080 ]
 
    polipo:
-     image: sunteya/polipo:20150408
+     image: sunteya/polipo:20160403
      links: [ sslocal ]
      ports: [ "8123:8123" ]
      restart: always
-     environment:
-       - POLIPO_ARGS=socksParentProxy=$SSLOCAL_PORT_1080_TCP_ADDR:1080
+     command: [ "socksParentProxy=$SSLOCAL_PORT_1080_TCP_ADDR:1080" ]
    ```
 
 ## Contributing
