@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 SS_APP=${SS_APP:-ssserver}

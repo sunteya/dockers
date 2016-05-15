@@ -1,14 +1,13 @@
-FROM sunteya/baseimage:20150716
+FROM alpine:3.3
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt-get update \
- && apt-get install -y python3-pip \
- && pip3 install shadowsocks==2.6.11 \
- && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*  # 20150716
+ADD build.sh /
+RUN sh -x build.sh # 20160515
 
-RUN mkdir -p /etc/service/shadowsocks
-ADD shadowsocks-run.sh /etc/service/shadowsocks/run
-RUN chmod +x /etc/service/shadowsocks/run
+ADD shadowsocks-run.sh /
+RUN chmod +x /shadowsocks-run.sh
 
 EXPOSE 8388
 EXPOSE 1080
+
+ENTRYPOINT [ "/shadowsocks-run.sh" ]
