@@ -1,8 +1,8 @@
-FROM alpine:3.3
+FROM python:3-alpine
 MAINTAINER sunteya <sunteya@gmail.com>
 
 ADD build.sh /
-RUN sh -x build.sh # 20160515
+RUN sh -x build.sh # 20160523
 
 ADD shadowsocks-run.sh /
 RUN chmod +x /shadowsocks-run.sh
