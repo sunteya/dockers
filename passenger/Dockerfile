@@ -1,9 +1,12 @@
-FROM phusion/passenger-customizable:0.9.18
+FROM phusion/passenger-customizable:0.9.19
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt-get update # 20160118
+RUN apt-get update # 20160808
 RUN /pd_build/utilities.sh
-RUN /pd_build/ruby2.2.sh
+RUN /pd_build/ruby-2.3.*.sh
+RUN /pd_build/nodejs.sh
+
+RUN apt-get install -y imagemagick libmagickwand-dev
 
 # Timezone
 RUN echo Asia/Shanghai > /etc/timezone
@@ -29,5 +32,4 @@ RUN rm -f /etc/service/nginx/down
 
 # Cleanup
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 
