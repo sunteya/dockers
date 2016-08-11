@@ -1,7 +1,7 @@
 FROM phusion/passenger-customizable:0.9.19
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt-get update # 20160808
+RUN apt-get update # 20160811
 RUN /pd_build/utilities.sh
 RUN /pd_build/ruby-2.3.*.sh
 RUN /pd_build/nodejs.sh
