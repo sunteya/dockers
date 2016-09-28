@@ -1,7 +1,7 @@
 FROM phusion/passenger-customizable:0.9.19
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt-get update # 20160811
+RUN apt-get update # 20160928
 RUN /pd_build/utilities.sh
 RUN /pd_build/ruby-2.3.*.sh
 RUN /pd_build/nodejs.sh
@@ -16,6 +16,9 @@ RUN cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN sed 's/#ClientAliveInterval 0/ClientAliveInterval 60/' -i /etc/ssh/sshd_config
 RUN rm -f /etc/service/sshd/down
 EXPOSE 22
+
+# fix logrotate broken
+RUN sed -i 's/root syslog/root adm/g' /etc/logrotate.conf
 
 # App
 RUN passwd -u app
