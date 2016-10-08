@@ -1,12 +1,14 @@
+set -x
+set -e
+
 version=$1
 
-apk add go git --update
-wget -O - https://github.com/ginuerzh/gost/archive/$version.tar.gz | gzip -d -c | tar xv
-cd /gost-$version && GOPATH=$PWD GOBIN=$PWD/bin go get
+apk add wget ca-certificates --update
+wget -O - https://github.com/ginuerzh/gost/releases/download/v${version}/gost_${version}_linux_amd64.tar.gz | tar xvz
 
 mkdir -p /app
-mv /gost-$version/bin/gost-$version /app/gost
-rm -rf /gost-$version
+mv /gost_${version}_linux_amd64/gost /app/gost
+rm -rf /gost_${version}_linux_amd64
 
-apk del go git --purge
+apk del wget ca-certificates --purge
 rm -rf /var/cahce/apk/*
