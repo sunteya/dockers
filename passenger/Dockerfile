@@ -1,10 +1,13 @@
 FROM phusion/passenger-customizable:0.9.19
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt-get update # 20160928
+RUN apt-get update # 20161206
 RUN /pd_build/utilities.sh
 RUN /pd_build/ruby-2.3.*.sh
 RUN /pd_build/nodejs.sh
+
+# Node
+RUN npm install -g yarn
 
 RUN apt-get install -y imagemagick libmagickwand-dev
 
@@ -35,4 +38,3 @@ RUN rm -f /etc/service/nginx/down
 
 # Cleanup
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
