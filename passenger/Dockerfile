@@ -1,12 +1,14 @@
 FROM phusion/passenger-customizable:0.9.19
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt-get update # 20161206
+RUN apt-get update # 20170117
 RUN /pd_build/utilities.sh
 RUN /pd_build/ruby-2.3.*.sh
 RUN /pd_build/nodejs.sh
 
 # Node
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN apt-get install -y nodejs
 RUN npm install -g yarn
 
 RUN apt-get install -y imagemagick libmagickwand-dev
