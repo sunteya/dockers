@@ -1,0 +1,28 @@
+USER root
+
+RUN set -ex && \
+    apk add --no-cache --virtual .build-deps \
+                                asciidoc \
+                                autoconf \
+                                build-base \
+                                curl \
+                                libtool \
+                                linux-headers \
+                                openssl-dev \
+                                pcre-dev \
+                                tar \
+                                xmlto && \
+    cd /tmp && \
+    curl -sSL https://github.com/shadowsocks/simple-obfs/archive/v0.0.3.tar.gz | tar xz --strip 1 && \
+    ./autogen.sh && \
+    ./configure && make && \
+    make install && \
+    cd .. && \
+    apk del .build-deps && \
+    rm -rf /tmp/*
+
+ENV SS_EXEC ss-server
+ADD entrypoint.sh /
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]
+CMD []
