@@ -1,10 +1,11 @@
 FROM phusion/passenger-customizable:0.9.20
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt update # 20170428 \
+RUN apt update # 20170510 \
  && /pd_build/utilities.sh \
  && /pd_build/ruby-2.3.*.sh \
  && /pd_build/nodejs.sh
+RUN gem install -V -N bundler
 
 # Node
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
@@ -26,6 +27,8 @@ EXPOSE 22
 RUN sed -i 's/root syslog/root adm/g' /etc/logrotate.conf
 
 # App
+ENV APP_CURRENT_PATH=/home/app/www/current
+COPY 01_apply_app_current_path.sh /etc/my_init.d/
 RUN passwd -u app \
  && usermod -a -G docker_env app \
  && apt install -y rsync
@@ -50,7 +53,7 @@ RUN apt install -y inotify-tools \
  && touch /etc/service/sidekiq/down
 
 # Utilities
-RUN apt install -y vim inetutils-ping dnsutils
+RUN apt install -y vim inetutils-ping dnsutils fish
 
 # Cleanup
 RUN apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
