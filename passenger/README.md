@@ -10,16 +10,16 @@ The image base on [phusion/baseimage-docker](https://github.com/phusion/passenge
 
 ## Usage
 
-1. `/home/app/current/public` is default passenger root directory, you must deploy project provide this directory.
+1. `/home/app/www/current/public` is default passenger root directory, you must deploy project provide this directory.
 
 2. Run with docker compose
-   
+
    ````yaml
    # docker-compose.yml
-   
+
    passenger:
      image: sunteya/passenger:20160118-ruby22
-     restart: always
+     restart: unless-stopped
      ports:
        - "80:80"
      volumes:
@@ -33,5 +33,3 @@ The image base on [phusion/baseimage-docker](https://github.com/phusion/passenge
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
 5. Create a new Pull Request
-
-
