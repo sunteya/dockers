@@ -1,5 +1,5 @@
 set -x 
-docker_version=3.0.5
+docker_version=3.0.6
 dockerfile_url=https://github.com/shadowsocks/shadowsocks-libev/raw/v$docker_version/docker/alpine/Dockerfile
 curl -sSL -o dockerfile.shadowsocks-libev $dockerfile_url 
 #sed -i '/apk del .build-deps/s/^/echo /' dockerfile.shadowsocks-libev

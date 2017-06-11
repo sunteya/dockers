@@ -11,12 +11,20 @@ RUN set -ex && \
                                 openssl-dev \
                                 pcre-dev \
                                 tar \
-                                xmlto && \
+                                xmlto \
+                                automake \
+                                libev-dev \
+                                udns-dev \
+                                git && \
     cd /tmp && \
-    curl -sSL https://github.com/shadowsocks/simple-obfs/archive/v0.0.3.tar.gz | tar xz --strip 1 && \
+    git clone https://github.com/shadowsocks/simple-obfs.git && \
+    cd simple-obfs && \
+    git reset --hard f16220e && \
+    git submodule update --init --recursive && \
     ./autogen.sh && \
     ./configure && make && \
     make install && \
+    cd .. && \
     cd .. && \
     apk del .build-deps && \
     rm -rf /tmp/*
