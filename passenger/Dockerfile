@@ -1,11 +1,10 @@
 FROM phusion/passenger-customizable:0.9.20
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt update # 20170510 \
- && /pd_build/utilities.sh \
- && /pd_build/ruby-2.3.*.sh \
- && /pd_build/nodejs.sh
-RUN gem install -V -N bundler
+RUN apt update # 20170510
+RUN /pd_build/utilities.sh
+RUN /pd_build/ruby-2.3.*.sh
+RUN /pd_build/nodejs.sh
 
 # Node
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
