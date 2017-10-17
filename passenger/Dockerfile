@@ -1,21 +1,27 @@
-FROM phusion/passenger-customizable:0.9.20
+FROM phusion/passenger-customizable:0.9.26
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt update # 20170510
+RUN apt update # 20171017-1
 RUN /pd_build/utilities.sh
-RUN /pd_build/ruby-2.3.*.sh
-RUN /pd_build/nodejs.sh
+#RUN apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
 # Node
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
  && apt install -y nodejs \
  && npm install -g yarn
+#RUN /pd_build/nodejs.sh
 
+# Ruby
+RUN /usr/local/rvm/bin/rvm remove ruby-2.3
+RUN /pd_build/ruby-2.4.*.sh
+#RUN gem install -V -N bundler
+
+# Imagemagick
 RUN apt install -y imagemagick libmagickwand-dev
 
 # Timezone
 RUN echo Asia/Shanghai > /etc/timezone \
- && cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+ && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # SSH
 RUN sed 's/#ClientAliveInterval 0/ClientAliveInterval 60/' -i /etc/ssh/sshd_config \
