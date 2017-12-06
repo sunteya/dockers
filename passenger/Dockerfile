@@ -1,12 +1,12 @@
-FROM phusion/passenger-customizable:0.9.26
+FROM phusion/passenger-customizable:0.9.27
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt update # 20171017-1
+RUN apt update # 20171206
 RUN /pd_build/utilities.sh
 #RUN apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
 # Node
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
  && apt install -y nodejs \
  && npm install -g yarn
 #RUN /pd_build/nodejs.sh
