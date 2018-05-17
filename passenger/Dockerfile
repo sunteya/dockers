@@ -1,7 +1,7 @@
-FROM phusion/passenger-customizable:0.9.27
+FROM phusion/passenger-customizable:0.9.32
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt update # 20171206
+RUN apt update # 20180517
 RUN /pd_build/utilities.sh
 #RUN apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
@@ -58,7 +58,7 @@ RUN apt install -y inotify-tools \
  && touch /etc/service/sidekiq/down
 
 # Utilities
-RUN apt install -y vim inetutils-ping dnsutils fish
+RUN apt install -y vim inetutils-ping dnsutils fish jq man-db
 
 # Cleanup
 RUN apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
