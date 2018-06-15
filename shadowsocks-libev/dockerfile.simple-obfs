@@ -19,7 +19,7 @@ RUN set -ex && \
     cd /tmp && \
     git clone https://github.com/shadowsocks/simple-obfs.git && \
     cd simple-obfs && \
-    git reset --hard f16220e && \
+    # git reset --hard f16220e && \
     git submodule update --init --recursive && \
     ./autogen.sh && \
     ./configure && make && \

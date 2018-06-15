@@ -2,7 +2,7 @@
 
 libev port of shadowsocks <https://github.com/shadowsocks/shadowsocks-libev>
 
-* [Dockerfile](https://github.com/sunteya/dockers/blob/master/shadowsocks-libev/Dockerfile)
+* [Dockerfile](https://github.com/sunteya/dockers/blob/master/shadowsocks-libev/build.sh)
 * [Github Repo](https://github.com/sunteya/dockers/tree/master/shadowsocks-libev)
 
 
