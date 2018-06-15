@@ -14,7 +14,8 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
 # Ruby
 RUN /usr/local/rvm/bin/rvm remove ruby-2.3
 RUN /pd_build/ruby-2.4.*.sh
-#RUN gem install -V -N bundler
+RUN gem update --system
+RUN gem install bundler
 
 # Imagemagick
 RUN apt install -y imagemagick libmagickwand-dev
