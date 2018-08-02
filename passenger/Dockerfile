@@ -1,7 +1,7 @@
-FROM phusion/passenger-customizable:0.9.32
+FROM phusion/passenger-customizable:0.9.35
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt update # 20180517
+RUN apt update # 20180802
 RUN /pd_build/utilities.sh
 #RUN apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
@@ -12,8 +12,9 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
 #RUN /pd_build/nodejs.sh
 
 # Ruby
+RUN /usr/local/rvm/bin/rvm list
 RUN /usr/local/rvm/bin/rvm remove ruby-2.3
-RUN /pd_build/ruby-2.4.*.sh
+RUN /pd_build/ruby-2.5.*.sh
 RUN gem update --system
 RUN gem install bundler
 
@@ -23,6 +24,7 @@ RUN apt install -y imagemagick libmagickwand-dev
 # Timezone
 RUN echo Asia/Shanghai > /etc/timezone \
  && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN apt install -y tzdata
 
 # SSH
 RUN sed 's/#ClientAliveInterval 0/ClientAliveInterval 60/' -i /etc/ssh/sshd_config \
