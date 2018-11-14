@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec chpst -u app svlogd -tt $APP_CURRENT_PATH/log/puma
