@@ -1,7 +1,7 @@
-FROM phusion/passenger-customizable:0.9.35
+FROM phusion/passenger-customizable:1.0.0
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt update # 20180815
+RUN apt update # 20181115
 RUN /pd_build/utilities.sh
 #RUN apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
