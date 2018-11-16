@@ -1,7 +1,7 @@
 FROM phusion/passenger-customizable:1.0.0
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt update # 20181115
+RUN apt update # 20181116
 RUN /pd_build/utilities.sh
 #RUN apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
@@ -50,15 +50,9 @@ COPY nginx-site-default.conf /etc/nginx/sites-available/default
 COPY logrotate-app.conf /etc/logrotate.d/app
 
 # Sidekiq (Disabled)
-COPY sidekiq-monitor-run.sh /etc/service/sidekiq-monitor/run
-COPY sidekiq-run.sh /etc/service/sidekiq/run
-COPY sidekiq-finish.sh /etc/service/sidekiq/finish
-RUN apt install -y inotify-tools \
- && chmod +x /etc/service/sidekiq-monitor/run \
- && chmod +x /etc/service/sidekiq/run \
- && chmod +x /etc/service/sidekiq/finish \
- && touch /etc/service/sidekiq-monitor/down \
- && touch /etc/service/sidekiq/down
+RUN apt install -y inotify-tools
+COPY sidekiq /etc/service/sidekiq
+COPY sidekiq-monitor /etc/service/sidekiq-monitor
 
 # Utilities
 RUN apt install -y vim inetutils-ping dnsutils fish jq man-db
