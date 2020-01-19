@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.11.2
 MAINTAINER sunteya <sunteya@gmail.com>
 
 # RUN mkdir /app \
@@ -13,7 +13,7 @@ RUN apk add --update --virtual .build-deps alpine-sdk linux-headers \
  && apk add iptables libstdc++ \
  && mkdir /app \
  && git clone https://github.com/wangyu-/udp2raw-tunnel.git /build \
- && cd /build && git checkout -b build 20180225.0 \
+ && cd /build && git checkout -b build 20190716.test.0 \
  && cd /build && make dynamic \
  && mv udp2raw_dynamic /app/udp2raw \
  && cd - && rm -rf /build \
