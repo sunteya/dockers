@@ -30,7 +30,7 @@ RUN set -ex && \
     rm -rf /tmp/*
 
 ENV SS_EXEC ss-server
-ADD entrypoint.sh /
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT [ "/entrypoint.sh" ]
+ADD ./entrypoint.sh /
+#RUN chmod +x /entrypoint
+ENTRYPOINT [ "sh", "/entrypoint.sh" ]
 CMD []

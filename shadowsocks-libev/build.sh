@@ -1,5 +1,5 @@
 set -x 
-docker_version=3.2.0
+docker_version=3.3.4
 rm -rf src
 git clone https://github.com/shadowsocks/shadowsocks-libev.git src
 cd src 
