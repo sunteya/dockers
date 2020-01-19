@@ -1,7 +1,7 @@
-FROM phusion/passenger-customizable:1.0.6
+FROM phusion/passenger-customizable:1.0.8
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt-get update # 20190821-1
+RUN apt-get update # 20191023
 RUN /pd_build/utilities.sh
 RUN apt install -y sudo
 
@@ -53,11 +53,7 @@ COPY logrotate-app.conf /etc/logrotate.d/app
 # Sidekiq (Disabled)
 COPY sidekiq-monitor-run.sh /etc/service/sidekiq-monitor/run
 COPY sidekiq-run.sh /etc/service/sidekiq/run
-COPY sidekiq-finish.sh /etc/service/sidekiq/finish
 RUN apt-get install -y inotify-tools \
- && chmod +x /etc/service/sidekiq-monitor/run \
- && chmod +x /etc/service/sidekiq/run \
- && chmod +x /etc/service/sidekiq/finish \
  && touch /etc/service/sidekiq-monitor/down \
  && touch /etc/service/sidekiq/down
 
