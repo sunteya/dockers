@@ -51,11 +51,9 @@ COPY nginx-site-default.conf /etc/nginx/sites-available/default
 COPY logrotate-app.conf /etc/logrotate.d/app
 
 # Sidekiq (Disabled)
-COPY sidekiq-monitor-run.sh /etc/service/sidekiq-monitor/run
-COPY sidekiq-run.sh /etc/service/sidekiq/run
-RUN apt-get install -y inotify-tools \
- && touch /etc/service/sidekiq-monitor/down \
- && touch /etc/service/sidekiq/down
+RUN apt-get install -y inotify-tools
+COPY ./sidekiq-monitor/ /etc/service/sidekiq-monitor/
+COPY ./sidekiq/ /etc/service/sidekiq/
 
 # Utilities
 RUN apt-get install -y vim inetutils-ping dnsutils fish jq man-db net-tools
