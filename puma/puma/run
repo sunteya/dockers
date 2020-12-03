@@ -1,8 +1,18 @@
 #!/bin/bash
 
 cd $APP_CURRENT_PATH
-exec 2>&1
-exec chpst -u app bundle exec puma --config config/puma.rb \
-                                   --environment production \
-                                   --control "unix://$PWD/tmp/pids/pumactl.sock" \
-                                   --state $PWD/tmp/pids/puma.state
+puma_path=$(bundle show puma)
+
+if [[ $puma_path == *"/puma-5"* ]]; then
+  exec 2>&1
+  exec chpst -u app bundle exec puma --config config/puma.rb \
+                                     --environment production \
+                                     --control-url "unix://$PWD/tmp/pids/pumactl.sock" \
+                                     --state $PWD/tmp/pids/puma.state
+else
+  exec 2>&1
+  exec chpst -u app bundle exec puma --config config/puma.rb \
+                                     --environment production \
+                                     --control "unix://$PWD/tmp/pids/pumactl.sock" \
+                                     --state $PWD/tmp/pids/puma.state
+fi

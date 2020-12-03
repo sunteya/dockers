@@ -1,4 +1,4 @@
-FROM sunteya/passenger:20191023-ruby26
+FROM sunteya/passenger:20200211-ruby26
 MAINTAINER sunteya <sunteya@gmail.com>
 
 # Disable Passenger
