@@ -1,20 +1,20 @@
-FROM phusion/passenger-customizable:1.0.8
+FROM phusion/passenger-customizable:2.0.1
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt-get update # 20191023
+RUN apt-get update # 2021-12-13
 RUN /pd_build/utilities.sh
 RUN apt install -y sudo
 
-# Node 10
-RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - \
+# Node 14 and yarn
+RUN curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - \
  && apt-get install -y nodejs \
  && npm install -g yarn
 
-# Ruby 2.6
+# Ruby 2.7
 RUN rm -rf /var/lib/apt/lists/*
 RUN /usr/local/rvm/bin/rvm list
-RUN /usr/local/rvm/bin/rvm remove ruby-2.5
-RUN /pd_build/ruby-2.6.*.sh
+RUN /usr/local/rvm/bin/rvm remove ruby
+RUN /pd_build/ruby-2.7.*.sh
 RUN gem update --system
 RUN gem install bundler
 
