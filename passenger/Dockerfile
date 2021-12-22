@@ -1,7 +1,7 @@
 FROM phusion/passenger-customizable:2.0.1
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt-get update # 2021-12-13
+RUN apt-get update # 2021-12-22-1
 RUN /pd_build/utilities.sh
 RUN apt install -y sudo
 

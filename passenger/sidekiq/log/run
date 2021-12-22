@@ -1,5 +1,5 @@
 #!/bin/bash
 
-mkdir -p $APP_CURRENT_PATH/log/sidekiq
-chown app:app $APP_CURRENT_PATH/log/sidekiq
-exec chpst -u app svlogd -tt $APP_CURRENT_PATH/log/sidekiq
+mkdir -p /var/log/sidekiq
+chown app:app /var/log/sidekiq
+exec chpst -u app svlogd -tt /var/log/sidekiq
