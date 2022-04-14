@@ -1,0 +1,5 @@
+#!/bin/sh -e
+mkdir -p /var/log/trojan
+chown nobody:nogroup /var/log/trojan
+chmod 02755 /var/log/trojan
+
