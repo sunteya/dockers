@@ -1,0 +1,5 @@
+#!/bin/sh -e
+mkdir -p /var/log/trojan-go
+chown nobody:nogroup /var/log/trojan-go
+chmod 02755 /var/log/trojan-go
+
