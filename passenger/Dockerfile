@@ -1,12 +1,12 @@
-FROM phusion/passenger-customizable:2.0.1
+FROM phusion/passenger-customizable:2.3.0
 MAINTAINER sunteya <sunteya@gmail.com>
 
-RUN apt-get update # 2021-12-22-1
+RUN apt-get update # 2022-07-21
 RUN /pd_build/utilities.sh
 RUN apt install -y sudo
 
 # Node 14 and yarn
-RUN curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - \
+RUN curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash - \
  && apt-get install -y nodejs \
  && npm install -g yarn
 
@@ -16,6 +16,7 @@ RUN /usr/local/rvm/bin/rvm list
 RUN /usr/local/rvm/bin/rvm remove ruby
 RUN /pd_build/ruby-2.7.*.sh
 RUN gem update --system
+RUN ruby -r "fileutils" -e 'FileUtils.rm_rf Gem.default_specifications_dir'
 RUN gem install bundler
 
 # Imagemagick
