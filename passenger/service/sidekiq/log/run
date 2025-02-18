@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mkdir -p /var/log/sidekiq
+exec svlogd -tt /var/log/sidekiq

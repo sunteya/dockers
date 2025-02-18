@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mkdir -p /var/log/puma
+exec svlogd -tt /var/log/puma

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+while inotifywait -e attrib $APP_CURRENT_PATH/tmp/restart.txt; do
+	sv stop good_job
+	sv start good_job
+done

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-mkdir -p $APP_CURRENT_PATH/log/puma
-chown app:app $APP_CURRENT_PATH/log/puma
-exec chpst -u app svlogd -tt $APP_CURRENT_PATH/log/puma

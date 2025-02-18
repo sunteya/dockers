@@ -1,0 +1,16 @@
+#!/bin/bash
+
+cd $APP_CURRENT_PATH
+puma_path=$(bundle show puma)
+
+puma_arguments="--control-url unix://$PWD/tmp/pids/pumactl.sock"
+
+if [[ $puma_path == *"/puma-4"* ]]; then
+  puma_arguments="--control unix://$PWD/tmp/pids/pumactl.sock"
+fi
+
+exec 2>&1
+exec chpst -u app bundle exec puma --config config/puma.rb \
+                                   --environment production \
+                                   --state $PWD/tmp/pids/puma.state \
+                                   $puma_arguments

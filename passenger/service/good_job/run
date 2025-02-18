@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd $APP_CURRENT_PATH
+
+exec 2>&1
+RAILS_ENV=production exec chpst -u app bundle exec good_job start --pidfile tmp/pids/good_job.pid

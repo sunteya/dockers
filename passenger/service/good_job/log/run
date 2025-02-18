@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mkdir -p /var/log/good_job
+exec svlogd -tt /var/log/good_job

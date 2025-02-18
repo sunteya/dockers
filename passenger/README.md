@@ -18,8 +18,10 @@ The image base on [phusion/baseimage-docker](https://github.com/phusion/passenge
    # docker-compose.yml
 
    passenger:
-     image: sunteya/passenger:20160118-ruby22
+     image: sunteya/passenger:20241128-ruby32
      restart: unless-stopped
+     environment:
+       # ENABLED_SERVICES: puma good_job sidekiq
      ports:
        - "80:80"
      volumes:
