@@ -12,8 +12,8 @@ RUN apt update \
       vim inetutils-ping dnsutils fish jq man-db net-tools rsync \
  && rm -rf /var/lib/apt/lists/*
 
-# Node 22
-RUN curl -sL https://deb.nodesource.com/setup_22.x | sudo -E bash - \
+# Node 20
+RUN curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash - \
  && apt-get install -y nodejs \
  && npm install -g yarn pnpm
 
