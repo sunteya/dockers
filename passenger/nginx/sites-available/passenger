@@ -5,7 +5,7 @@ server {
 	charset utf-8;
 	root $app_current_path/public;
 
-	location ~ ^/(uploads|downloads|assets|packs|vite)/ {
+	location ~ ^/(uploads|downloads|assets|packs|vite|_nuxt)/ {
 		expires max;
 		add_header Cache-Control public;
 		add_header ETag "";

@@ -1,4 +1,4 @@
-FROM phusion/passenger-customizable:3.1.3
+FROM phusion/passenger-customizable:3.1.6
 LABEL maintainer="sunteya <sunteya@gmail.com>"
 
 # ================
