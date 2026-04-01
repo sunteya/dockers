@@ -10,7 +10,7 @@ RUN apt update \
       imagemagick libmagickwand-dev \
       libvips-dev \
       vim inetutils-ping dnsutils fish jq man-db net-tools rsync \
- && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/* # 2026-04-01
 
 # Node 22
 RUN curl -sL https://deb.nodesource.com/setup_22.x | sudo -E bash - \

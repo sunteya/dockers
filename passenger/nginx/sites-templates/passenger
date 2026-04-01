@@ -1,11 +1,15 @@
+set_real_ip_from 10.0.0.0/8;
+set_real_ip_from 172.16.0.0/12;
+set_real_ip_from 192.168.0.0/16;
+
 server {
-	include snippets/variables.conf;
 	listen 80 default_server;
 	server_name _;
 	charset utf-8;
-	root $app_current_path/public;
+	root ${APP_CURRENT_PATH}/public;
 
-	location ~ ^/(uploads|downloads|assets|packs|vite|_nuxt)/ {
+	location ~ ^${RAILS_RELATIVE_URL_ROOT}/(uploads|downloads|assets|packs|vite|_nuxt)/(.*)$ {
+		alias ${APP_CURRENT_PATH}/public/$1/$2;
 		expires max;
 		add_header Cache-Control public;
 		add_header ETag "";

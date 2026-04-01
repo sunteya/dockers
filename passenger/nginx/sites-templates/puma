@@ -23,13 +23,13 @@ map $proxy_x_forwarded_proto $proxy_x_forwarded_ssl {
 }
 
 server {
-	include snippets/variables.conf;
 	listen 80 default_server;
 	server_name _;
 	charset utf-8;
-	root $app_current_path/public;
+	root ${APP_CURRENT_PATH}/public;
 
-	location ~ ^/(uploads|downloads|assets|packs|vite|_nuxt)/ {
+	location ~ ^${RAILS_RELATIVE_URL_ROOT}/(uploads|downloads|assets|packs|vite|_nuxt)/(.*)$ {
+		alias ${APP_CURRENT_PATH}/public/$1/$2;
 		expires max;
 		add_header Cache-Control public;
 		add_header ETag "";
