@@ -1,4 +1,4 @@
-FROM phusion/passenger-customizable:3.1.6
+FROM phusion/passenger-customizable:3.1.7
 LABEL maintainer="sunteya <sunteya@gmail.com>"
 
 # ================
@@ -10,10 +10,10 @@ RUN apt update \
       imagemagick libmagickwand-dev \
       libvips-dev \
       vim inetutils-ping dnsutils fish jq man-db net-tools rsync \
- && rm -rf /var/lib/apt/lists/* # 2026-04-01
+ && rm -rf /var/lib/apt/lists/* # 2026-06-01
 
-# Node 22
-RUN curl -sL https://deb.nodesource.com/setup_22.x | sudo -E bash - \
+# Node 24
+RUN curl -sL https://deb.nodesource.com/setup_24.x | sudo -E bash - \
  && apt-get install -y nodejs \
  && npm install -g yarn pnpm
 
